@@ -91,10 +91,10 @@
 		6B89E7B019F59CE400525411 /* GitHubToGo */ = {
 			isa = PBXGroup;
 			children = (
+				6B89E7B319F59CE400525411 /* AppDelegate.swift */,
 				6B89E7E319F5CD3100525411 /* View */,
 				6B89E7E419F5CD3900525411 /* Model */,
 				6B89E7E219F5CD2C00525411 /* Controller */,
-				6B89E7B319F59CE400525411 /* AppDelegate.swift */,
 				6B89E7B819F59CE400525411 /* ViewController.swift */,
 				6B89E7D619F59E7500525411 /* SplitViewController.swift */,
 				6B89E7DC19F5BFA500525411 /* RootViewController.swift */,

@@ -8,28 +8,23 @@
 
 import UIKit
 
-class SearchResultsViewController: UIViewController, UITableViewDataSource {
+class SearchResultsViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
 
     var networkController : NetworkController!
     var repos = [Repo]()
     
     @IBOutlet var tableView : UITableView!
+    @IBOutlet var searchBar : UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
-        self.networkController = NetworkController()
         
-        networkController.fetchDummyJSON { (errorDescription, repos) -> (Void) in
-            if errorDescription == nil {
-                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                    self.repos = repos!
-                    self.tableView.reloadData()
-                })
-            } else {
-                //alert the user something went wrong
-            }
-        }
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        self.networkController = appDelegate.networkController
+        
+        self.searchBar.delegate = self
+
         // Do any additional setup after loading the view.
     }
 
@@ -47,5 +42,20 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource {
         let repos = self.repos[indexPath.row]
         cell.textLabel!.text = repos.repoName
         return cell
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
+        networkController.fetchRepo(self.searchBar.text, completionHandler: { (errorDescription, repos) -> (Void) in
+            if errorDescription == nil {
+                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                    self.repos = repos!
+                    self.tableView.reloadData()
+                })
+            } else {
+                //alert the user something went wrong
+            }
+
+        })
     }
 }

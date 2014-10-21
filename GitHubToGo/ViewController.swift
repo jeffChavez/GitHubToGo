@@ -9,17 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     var networkController : NetworkController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        self.networkController = appDelegate.networkController
+        
+        //fast load, thanks to will richman
+        dispatch_after(1, dispatch_get_main_queue(), {
+            self.networkController.requestOAuthAccess()
+        })
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-}
+}   

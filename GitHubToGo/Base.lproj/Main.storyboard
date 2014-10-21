@@ -108,6 +108,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="iub-wf-Meg">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="9Av-5V-Q3R">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SHOW_RESULTS_CELL" id="slj-av-Ytz">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -128,6 +133,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="searchBar" destination="9Av-5V-Q3R" id="MPK-lG-I1S"/>
                         <outlet property="tableView" destination="iub-wf-Meg" id="Q66-5v-pGe"/>
                     </connections>
                 </viewController>
@@ -163,7 +169,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ewe-BS-yw7">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ewe-BS-yw7">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
                                     <segue destination="Zvf-i6-CX4" kind="embed" id="RND-6F-2sn"/>
@@ -171,6 +177,12 @@
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Cyy-w6-2aK" firstAttribute="top" secondItem="Ewe-BS-yw7" secondAttribute="bottom" id="9HY-5s-JMd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ewe-BS-yw7" secondAttribute="trailing" constant="-16" id="XpX-xR-hCN"/>
+                            <constraint firstItem="Ewe-BS-yw7" firstAttribute="top" secondItem="4ce-0P-0pl" secondAttribute="topMargin" id="g8K-RZ-US7"/>
+                            <constraint firstItem="Ewe-BS-yw7" firstAttribute="leading" secondItem="4ce-0P-0pl" secondAttribute="leadingMargin" constant="-16" id="hEa-cg-K6l"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m56-Ev-mvy" userLabel="First Responder" sceneMemberID="firstResponder"/>

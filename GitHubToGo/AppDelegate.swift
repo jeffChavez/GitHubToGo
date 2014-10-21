@@ -14,9 +14,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    let networkController = NetworkController()
+    var token : String!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        if let value = NSUserDefaults.standardUserDefaults().valueForKey("OAuthToken") as? String {
+            println("value\(value)")
+        } else {
+            self.networkController.requestOAuthAccess()
+        }        
+        return true
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String, annotation: AnyObject?) -> Bool {
+        //passing the url github passed back to us to our network controller
+        self.networkController.handleOAuthURL(url)
         return true
     }
 
