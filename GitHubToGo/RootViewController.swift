@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RootViewController.swift
 //  GitHubToGo
 //
 //  Created by Jeff Chavez on 10/20/14.
@@ -8,14 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    var networkController : NetworkController!
+class RootViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
