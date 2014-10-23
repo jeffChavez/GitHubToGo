@@ -11,10 +11,9 @@ import UIKit
 class UserDetailViewController: UIViewController {
 
     @IBOutlet var imageView : UIImageView!
-    @IBOutlet var usernameLabel : UILabel?
+    @IBOutlet var usernameLabel : UILabel!
     
     var selectedUser : User?
-    
     var reverseOrigin: CGRect?
     var image: UIImage?
     
@@ -26,6 +25,7 @@ class UserDetailViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         self.imageView.image = selectedUser?.avatarImage
+        self.usernameLabel.text = selectedUser?.username
     }
 
     override func didReceiveMemoryWarning() {

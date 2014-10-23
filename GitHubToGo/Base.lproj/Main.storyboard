@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xLV-SY-01u">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -40,13 +39,18 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lTs-Qw-kiz" id="uJh-5I-LJV">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Repo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9B-pO-bb5">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9B-pO-bb5">
                                                     <rect key="frame" x="21" y="11" width="41" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="g9B-pO-bb5" firstAttribute="top" secondItem="uJh-5I-LJV" secondAttribute="topMargin" constant="3" id="6o3-0e-kA1"/>
+                                                <constraint firstItem="g9B-pO-bb5" firstAttribute="leading" secondItem="uJh-5I-LJV" secondAttribute="leadingMargin" constant="13" id="etM-Up-kLr"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="g9B-pO-bb5" secondAttribute="bottom" constant="3" id="lhj-ww-fSc"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="TBE-ty-4uJ" kind="showDetail" id="FkH-bj-wJu"/>
@@ -57,13 +61,18 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8hg-kv-3W6" id="kCB-TF-pgi">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTU-f7-CSE">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTU-f7-CSE">
                                                     <rect key="frame" x="21" y="11" width="36" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="DTU-f7-CSE" firstAttribute="leading" secondItem="kCB-TF-pgi" secondAttribute="leadingMargin" constant="13" id="7wj-Mh-1k8"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="DTU-f7-CSE" secondAttribute="bottom" constant="3" id="Ix2-F4-qZq"/>
+                                                <constraint firstItem="DTU-f7-CSE" firstAttribute="top" secondItem="kCB-TF-pgi" secondAttribute="topMargin" constant="3" id="v0w-by-QDO"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="AuA-me-xYA" kind="showDetail" id="n3r-af-8J7"/>
@@ -74,13 +83,18 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Use-7c-vGh" id="2zW-d9-wLa">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gz-C4-krc">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gz-C4-krc">
                                                     <rect key="frame" x="21" y="11" width="49" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="2gz-C4-krc" secondAttribute="bottom" constant="3" id="ebI-22-dNJ"/>
+                                                <constraint firstItem="2gz-C4-krc" firstAttribute="leading" secondItem="2zW-d9-wLa" secondAttribute="leadingMargin" constant="13" id="k9x-UW-6BA"/>
+                                                <constraint firstItem="2gz-C4-krc" firstAttribute="top" secondItem="2zW-d9-wLa" secondAttribute="topMargin" constant="3" id="w4l-F4-t6t"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -118,12 +132,37 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SHOW_RESULTS_CELL" id="slj-av-Ytz">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="REPO_SEARCH_CELL" id="slj-av-Ytz" customClass="RepoSearchCell" customModule="GitHubToGo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="slj-av-Ytz" id="kxE-Rb-hOL">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5U-By-RyW">
+                                                    <rect key="frame" x="73" y="11" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hT8-3s-QVL">
+                                                    <rect key="frame" x="17" y="2" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="9b3-Ex-8n6"/>
+                                                        <constraint firstAttribute="width" constant="40" id="akw-88-Tqc"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="g5U-By-RyW" secondAttribute="centerY" id="PSe-Rw-ddU"/>
+                                                <constraint firstItem="hT8-3s-QVL" firstAttribute="leading" secondItem="kxE-Rb-hOL" secondAttribute="leadingMargin" constant="9" id="Pn1-G4-P5O"/>
+                                                <constraint firstAttribute="centerY" secondItem="hT8-3s-QVL" secondAttribute="centerY" id="qST-k5-MTc"/>
+                                                <constraint firstItem="g5U-By-RyW" firstAttribute="leading" secondItem="hT8-3s-QVL" secondAttribute="trailing" constant="16" id="rRC-Ka-TgP"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="repoImageView" destination="hT8-3s-QVL" id="Srq-pG-wyR"/>
+                                            <outlet property="repoNameLabel" destination="g5U-By-RyW" id="91n-MN-4SF"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -143,7 +182,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ti-Bw-aEn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2581" y="317"/>
+            <point key="canvasLocation" x="2599" y="329"/>
+        </scene>
+        <!--Repo Detail View Controller-->
+        <scene sceneID="N5P-U7-j0z">
+            <objects>
+                <viewController storyboardIdentifier="REPO_DETAIL_VC" id="IbQ-cK-Tr3" customClass="RepoDetailViewController" customModule="GitHubToGo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0kS-eq-pyr"/>
+                        <viewControllerLayoutGuide type="bottom" id="URA-n9-CJY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2pF-yN-Dbe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pHq-q3-IxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3290" y="329"/>
         </scene>
         <!--User Search View Controller-->
         <scene sceneID="1d0-uX-biT">
@@ -195,7 +252,7 @@
                                             <constraint firstItem="lYL-Yr-wG5" firstAttribute="top" secondItem="pH7-TU-qan" secondAttribute="topMargin" constant="-8" id="jKd-BQ-cri"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="imageView" destination="lYL-Yr-wG5" id="RQt-Zl-QEr"/>
+                                            <outlet property="userImageView" destination="lYL-Yr-wG5" id="CpL-Ba-nw5"/>
                                             <outlet property="usernameLabel" destination="v7w-SL-ZPq" id="Gmj-nc-T4S"/>
                                         </connections>
                                     </collectionViewCell>

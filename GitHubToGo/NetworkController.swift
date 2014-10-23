@@ -74,11 +74,10 @@ class NetworkController {
     }
     
     func createAuthenticatedSession () {
-        if let token = NSUserDefaults.standardUserDefaults().valueForKey("OAuthToken") as? NSString {
-            var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-            configuration.HTTPAdditionalHeaders = ["Authorization": "token \(token)"]
-            self.authenticatedURLSessionConfig = NSURLSession(configuration: configuration)
-        }
+        let token = NSUserDefaults.standardUserDefaults().valueForKey("OAuthToken") as NSString
+        var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        configuration.HTTPAdditionalHeaders = ["Authorization": "token \(token)"]
+        self.authenticatedURLSessionConfig = NSURLSession(configuration: configuration)
     }
     
     func searchForRepos (searchTerm: String, completionHandler: (errorDescription: String?, repos: [Repo]?) -> (Void)) {
@@ -137,12 +136,24 @@ class NetworkController {
         dataTask.resume()
     }
     
-    func downloadAvatarsForProfiles (user: User, completionHandler: (image: UIImage) -> (Void)) {
+    func downloadAvatarsFromUserSearch (user: User, completionHandler: (image: UIImage) -> (Void)) {
         self.avatarDownloadQueue.addOperationWithBlock { () -> Void in
-            let url = NSURL(string: user.avatar_url)
+            let url = NSURL(string: user.avatarURL)
             let imageData = NSData(contentsOfURL: url!)
             let image = UIImage(data: imageData!)
             user.avatarImage = image
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(image: image!)
+            })
+        }
+    }
+    
+    func downloadAvatarsFromRepoSearch (repo: Repo, completionHandler: (image:UIImage) -> (Void)) {
+        self.avatarDownloadQueue.addOperationWithBlock { () -> Void in
+            let url = NSURL(string: repo.ownerAvatarURL)
+            let imageData = NSData(contentsOfURL: url!)
+            let image = UIImage(data: imageData!)
+            repo.ownerAvatarImage = image
             NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                 completionHandler(image: image!)
             })

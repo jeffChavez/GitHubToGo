@@ -12,15 +12,15 @@ class Repo {
     
     var repoName : String
     var url : String
-    var login : String
-    var avatar_url : String
-    var avatarImage : UIImage?
+    var ownerLogin : String
+    var ownerAvatarURL : String
+    var ownerAvatarImage : UIImage?
     
     init (item: NSDictionary) {
         self.repoName = item["name"] as String
         self.url = item["html_url"] as String
         let owner = item["owner"] as NSDictionary
-        self.login = owner["login"] as String
-        self.avatar_url = owner["avatar_url"] as String
+        self.ownerLogin = owner["login"] as String
+        self.ownerAvatarURL = owner["avatar_url"] as String
     }
 }

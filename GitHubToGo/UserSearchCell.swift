@@ -10,6 +10,10 @@ import UIKit
 
 class UserSearchCell : UICollectionViewCell {
     
-    @IBOutlet var imageView : UIImageView!
+    @IBOutlet var userImageView : UIImageView!
     @IBOutlet var usernameLabel : UILabel!
+    
+    override func prepareForReuse() {
+        self.userImageView.image = nil
+    }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RepoSearchViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
+class RepoSearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     var networkController : NetworkController!
     var repos = [Repo]()
@@ -19,18 +19,15 @@ class RepoSearchViewController: UIViewController, UITableViewDataSource, UISearc
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
+        self.tableView.delegate = self
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         self.networkController = appDelegate.networkController
-        
         self.searchBar.delegate = self
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,10 +35,35 @@ class RepoSearchViewController: UIViewController, UITableViewDataSource, UISearc
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SHOW_RESULTS_CELL", forIndexPath: indexPath) as UITableViewCell
-        let repos = self.repos[indexPath.row]
-        cell.textLabel.text = repos.repoName
+        let cell = tableView.dequeueReusableCellWithIdentifier("REPO_SEARCH_CELL", forIndexPath: indexPath) as RepoSearchCell
+        cell.repoNameLabel.text = self.repos[indexPath.row].repoName
+        
+        cell.repoImageView.image = nil
+        var currentTag = cell.tag + 1
+        cell.tag = currentTag
+        
+        if self.repos[indexPath.row].ownerAvatarImage != nil {
+            cell.repoImageView.image = self.repos[indexPath.row].ownerAvatarImage
+        } else {
+            self.networkController.downloadAvatarsFromRepoSearch(self.repos[indexPath.row], completionHandler: { (image) -> (Void) in
+                if let cellForImage = self.tableView.cellForRowAtIndexPath(indexPath) as? RepoSearchCell {
+                    if cell.tag == currentTag {
+                        cellForImage.repoImageView.image = image
+                        cell.repoImageView.layer.cornerRadius = 3
+                        cell.repoImageView.layer.masksToBounds = true
+                        cell.repoImageView.layer.borderWidth = 0.5
+                    }
+                }
+            })
+        }
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("REPO_DETAIL_VC") as RepoDetailViewController
+        newVC.selectedRepo = self.repos[indexPath.row]
+        self.navigationController?.pushViewController(newVC, animated: true)
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -55,5 +77,9 @@ class RepoSearchViewController: UIViewController, UITableViewDataSource, UISearc
                 //alert the user something went wrong
             }
         })
+    }
+    
+    func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        return text.validate()
     }
 }

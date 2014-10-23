@@ -10,12 +10,12 @@ import UIKit
 
 class User {
     
-    var avatar_url : String
+    var avatarURL : String
     var avatarImage : UIImage?
     var username : String
     
     init (item: NSDictionary) {
-        self.avatar_url = item["avatar_url"] as String
+        self.avatarURL = item["avatar_url"] as String
         self.username = item["login"] as String
     }
 }

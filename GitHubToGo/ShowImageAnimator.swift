@@ -33,7 +33,7 @@ class ShowImageAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         // Add the toViewController's view onto the containerView
         containerView.addSubview(toViewController.view)
         
-        UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+        UIView.animateWithDuration(1.0, delay: 0.0, options: nil, animations: { () -> Void in
             // During animation, expand the toViewController's view frame
             // to match the original view controllers
             // This will cause the toViewController to fill the screen

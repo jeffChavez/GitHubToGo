@@ -60,14 +60,15 @@ class UserSearchViewController: UIViewController, UISearchBarDelegate, UICollect
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("USER_SEARCH_CELL", forIndexPath: indexPath) as UserSearchCell
         cell.usernameLabel.text = self.users[indexPath.row].username
         if self.users[indexPath.row].avatarImage != nil {
-            cell.imageView.image = self.users[indexPath.row].avatarImage
+            cell.userImageView.image = self.users[indexPath.row].avatarImage
         } else {
-            self.networkController.downloadAvatarsForProfiles(self.users[indexPath.row], completionHandler: { (image) -> (Void) in
-                let cellForImage = self.collectionView.cellForItemAtIndexPath(indexPath) as UserSearchCell
-                cellForImage.imageView.image = image
-                cell.imageView.layer.cornerRadius = 3
-                cell.imageView.layer.masksToBounds = true
-                cell.imageView.layer.borderWidth = 0.5
+            self.networkController.downloadAvatarsFromUserSearch(self.users[indexPath.row], completionHandler: { (image) -> (Void) in
+                if let cellForImage = self.collectionView.cellForItemAtIndexPath(indexPath) as? UserSearchCell {
+                    cellForImage.userImageView.image = image
+                    cell.userImageView.layer.cornerRadius = 3
+                    cell.userImageView.layer.masksToBounds = true
+                    cell.userImageView.layer.borderWidth = 0.5
+                }
             })
         }
         return cell
@@ -95,6 +96,9 @@ class UserSearchViewController: UIViewController, UISearchBarDelegate, UICollect
         
         // Trigger a normal push animations; let navigation controller take over.
         self.navigationController?.pushViewController(newVC, animated: true)
-
+    }
+    
+    func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        return text.validate()
     }
 }
