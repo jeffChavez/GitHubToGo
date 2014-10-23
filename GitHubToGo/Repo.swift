@@ -1,5 +1,5 @@
 //
-//  Repo.swift
+//  SearchResult.swift
 //  GitHubToGo
 //
 //  Created by Jeff Chavez on 10/20/14.
@@ -14,6 +14,7 @@ class Repo {
     var url : String
     var login : String
     var avatar_url : String
+    var avatarImage : UIImage?
     
     init (item: NSDictionary) {
         self.repoName = item["name"] as String

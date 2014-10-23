@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchResultsViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
+class RepoSearchViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
 
     var networkController : NetworkController!
     var repos = [Repo]()
@@ -24,7 +24,7 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UISe
         self.networkController = appDelegate.networkController
         
         self.searchBar.delegate = self
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -40,13 +40,12 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UISe
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SHOW_RESULTS_CELL", forIndexPath: indexPath) as UITableViewCell
         let repos = self.repos[indexPath.row]
-        cell.textLabel!.text = repos.repoName
+        cell.textLabel.text = repos.repoName
         return cell
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        
-        networkController.fetchRepo(self.searchBar.text, completionHandler: { (errorDescription, repos) -> (Void) in
+        networkController.searchForRepos(self.searchBar.text, completionHandler: { (errorDescription, repos) -> (Void) in
             if errorDescription == nil {
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                     self.repos = repos!
@@ -55,7 +54,6 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UISe
             } else {
                 //alert the user something went wrong
             }
-
         })
     }
 }

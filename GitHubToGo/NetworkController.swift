@@ -19,11 +19,13 @@ class NetworkController {
     
     var authenticatedURLSessionConfig : NSURLSession!
     var token : String!
+    let avatarDownloadQueue = NSOperationQueue()
     
     //get out of app and go to github
     func requestOAuthAccess () {
         let url = gitHubOAuthURL + clientID + "&" + redirectURL + "&" + scope
-        UIApplication.sharedApplication().openURL(NSURL(string: url))
+        println(url)
+        UIApplication.sharedApplication().openURL(NSURL(string: url)!)
     }
     
     func handleOAuthURL (callbackURL: NSURL) {
@@ -33,7 +35,7 @@ class NetworkController {
         let code = components?.last
         //construct the query string for the final POST call
         let urlQuery = clientID + "&" + clientSecret + "&" + "code=\(code!)"
-        var request = NSMutableURLRequest(URL: NSURL(string: githubPostURL))
+        var request = NSMutableURLRequest(URL: NSURL(string: githubPostURL)!)
         request.HTTPMethod = "POST"
         //turns string into data
         var postData = urlQuery.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
@@ -50,7 +52,7 @@ class NetworkController {
                     case 200...204:
                         var tokenResponse = NSString(data: data, encoding: NSASCIIStringEncoding)
                         //parse through the response and get auth token and authorization
-                        var tokenParsed = tokenResponse.componentsSeparatedByString("&").first as NSString
+                        var tokenParsed = tokenResponse?.componentsSeparatedByString("&").first as NSString
                         tokenParsed = tokenParsed.componentsSeparatedByString("access_token=").last as NSString
                         println(tokenParsed)
                         var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -70,9 +72,19 @@ class NetworkController {
     init () {
         
     }
-    func fetchRepo (usernameSearch: String, completionHandler: (errorDescription: String?, repos: [Repo]?) -> (Void)) {
-        let url = NSURL(string: "https://api.github.com/search/repositories?q=\(usernameSearch)")
-        let dataTask = self.authenticatedURLSessionConfig.dataTaskWithURL(url, completionHandler: { (data, response, error) -> Void in
+    
+    func createAuthenticatedSession () {
+        if let token = NSUserDefaults.standardUserDefaults().valueForKey("OAuthToken") as? NSString {
+            var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+            configuration.HTTPAdditionalHeaders = ["Authorization": "token \(token)"]
+            self.authenticatedURLSessionConfig = NSURLSession(configuration: configuration)
+        }
+    }
+    
+    func searchForRepos (searchTerm: String, completionHandler: (errorDescription: String?, repos: [Repo]?) -> (Void)) {
+        var searchNoSpaces = searchTerm.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        let url = NSURL(string: "https://api.github.com/search/repositories?q=\(searchNoSpaces)")
+        let dataTask = self.authenticatedURLSessionConfig.dataTaskWithURL(url!, completionHandler: { (data, response, error) -> Void in
             if let httpResponse = response as? NSHTTPURLResponse {
                 switch httpResponse.statusCode {
                 case 200...204:
@@ -97,70 +109,43 @@ class NetworkController {
         dataTask.resume()
     }
     
-    
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//    func fetchDummyJSON (completionHandler: (errorDescription: String?, repos: [Repo]?) -> (Void)) {
-//        if let path = NSBundle.mainBundle().pathForResource("dummy", ofType: "json") {
-//            let data = NSData(contentsOfFile: path)
-//            var error : NSError?
-//            if let JSONArray = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSArray {
-//                if let JSONDictionary = JSONArray[0] as? NSDictionary {
-//                    if let friendsDictionary = JSONDictionary["friends"] as? NSDictionary {
-//                        if let friendsArray = friendsDictionary[[0]] as? NSArray {
-//                            if let friendsArrayOfDictionaries = friendsArray[0] as? NSDictionary {
-//                                if let id = friendsArrayOfDictionaries["id"] as? NSDictionary {
-//                                    println(id)
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-    func fetchDummyJSON (completionHandler: (errorDescription: String?, repos: [Repo]?) -> (Void)) {
-        if let path = NSBundle.mainBundle().pathForResource("dummy", ofType: "json") {
-            let data = NSData(contentsOfFile: path)
-            var error: NSError?
-            if let JSONArray = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSArray {
-                var repos = [Repo]()
-                for JSONDictionary in JSONArray {
-                    if let repoDictionary = JSONDictionary as? NSDictionary {
-                        var parsedRepos = Repo(item: repoDictionary)
-                        repos.append(parsedRepos)
+    func searchForUsers (searchTerm: String, completionHandler: (errorDescription: String?, users: [User]?) -> (Void)) {
+        var searchNoSpaces = searchTerm.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        let url = NSURL(string: "https://api.github.com/search/users?q=\(searchNoSpaces)")
+        let dataTask = self.authenticatedURLSessionConfig.dataTaskWithURL(url!, completionHandler: { (data, response, error) -> Void in
+            if let httpResponse = response as? NSHTTPURLResponse {
+                switch httpResponse.statusCode {
+                case 200...204:
+                    var error : NSError?
+                    if let JSONDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSDictionary {
+                        if let itemArray = JSONDictionary["items"] as? NSArray {
+                            var users = [User]()
+                            for item in itemArray {
+                                if let itemDictionary = item as? NSDictionary {
+                                    var newItem = User(item: itemDictionary)
+                                    users.append(newItem)
+                                }
+                            }
+                            completionHandler(errorDescription: nil, users: users)
+                        }
                     }
+                default:
+                    println("bad response? \(httpResponse.statusCode)")
                 }
-                completionHandler(errorDescription: nil, repos: repos)
             }
+        })
+        dataTask.resume()
+    }
+    
+    func downloadAvatarsForProfiles (user: User, completionHandler: (image: UIImage) -> (Void)) {
+        self.avatarDownloadQueue.addOperationWithBlock { () -> Void in
+            let url = NSURL(string: user.avatar_url)
+            let imageData = NSData(contentsOfURL: url!)
+            let image = UIImage(data: imageData!)
+            user.avatarImage = image
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(image: image!)
+            })
         }
     }
 }

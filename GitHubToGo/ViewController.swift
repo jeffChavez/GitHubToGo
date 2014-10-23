@@ -14,14 +14,22 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         self.networkController = appDelegate.networkController
         
-        //fast load, thanks to will richman
-        dispatch_after(1, dispatch_get_main_queue(), {
-            self.networkController.requestOAuthAccess()
-        })
-        // Do any additional setup after loading the view, typically from a nib.
+        if let value = NSUserDefaults.standardUserDefaults().valueForKey("OAuthToken") as? String {
+            println("value\(value)")
+            self.networkController.createAuthenticatedSession()
+        } else {
+            var alertController = UIAlertController(title: "Authentication Required", message: "You must sign into your account before continuing. Redirect to Github.com?", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+                dispatch_after(1, dispatch_get_main_queue(), {
+                    self.networkController.requestOAuthAccess()
+                })
+            }))
+            alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
-}   
+}
