@@ -136,6 +136,42 @@ class NetworkController {
         dataTask.resume()
     }
     
+    func fetchAuthenticatedUser(completionHandler: (errorDescription: String?, authenticatedUser: AuthenticatedUser?) -> Void) {
+        let url = NSURL(string: "https://api.github.com/user")
+        
+        let value = NSUserDefaults.standardUserDefaults().valueForKey("OAuthToken") as NSString
+        var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        configuration.HTTPAdditionalHeaders = ["Authorization": "token \(value)"]
+        self.authenticatedURLSessionConfig = NSURLSession(configuration: configuration)
+        
+        let dataTask = self.authenticatedURLSessionConfig!.dataTaskWithURL(url!, completionHandler: { (data, response, error) -> Void in
+            if error != nil {
+                println("something bad happened")
+            } else {
+                if let httpResponse = response as? NSHTTPURLResponse {
+                    switch httpResponse.statusCode {
+                    case 200...299:
+                        println("good network")
+                        var error : NSError?
+                        let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+                        if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSDictionary {
+                            var authenticatedUser = AuthenticatedUser(jsonDictionary: jsonDictionary)
+                            completionHandler(errorDescription: nil, authenticatedUser: authenticatedUser)
+                        }
+                    case 400...499:
+                         println("This is the user's fault, code: \(httpResponse.statusCode)")
+                    case 500...599:
+                        println("This is ther server's fault, code: \(httpResponse.statusCode)")
+                    default:
+                        println("Something generally bad happened")
+                    }
+                }
+            }
+        })
+        dataTask.resume()
+        
+    }
+    
     func downloadAvatarsFromUserSearch (user: User, completionHandler: (image: UIImage) -> (Void)) {
         self.avatarDownloadQueue.addOperationWithBlock { () -> Void in
             let url = NSURL(string: user.avatarURL)

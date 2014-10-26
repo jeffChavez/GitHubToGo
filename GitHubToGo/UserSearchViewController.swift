@@ -64,10 +64,13 @@ class UserSearchViewController: UIViewController, UISearchBarDelegate, UICollect
         } else {
             self.networkController.downloadAvatarsFromUserSearch(self.users[indexPath.row], completionHandler: { (image) -> (Void) in
                 if let cellForImage = self.collectionView.cellForItemAtIndexPath(indexPath) as? UserSearchCell {
-                    cellForImage.userImageView.image = image
-                    cell.userImageView.layer.cornerRadius = 3
-                    cell.userImageView.layer.masksToBounds = true
-                    cell.userImageView.layer.borderWidth = 0.5
+                    
+                    UIView.transitionWithView(cellForImage.userImageView, duration: 0.4, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
+                            cellForImage.userImageView.image = image
+                            cell.userImageView.layer.cornerRadius = 3
+                            cell.userImageView.layer.masksToBounds = true
+                            cell.userImageView.layer.borderWidth = 0.5
+                        }, completion: nil)
                 }
             })
         }

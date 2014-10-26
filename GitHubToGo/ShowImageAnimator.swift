@@ -38,7 +38,7 @@ class ShowImageAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             // to match the original view controllers
             // This will cause the toViewController to fill the screen
             toViewController.view.frame = fromViewController.view.frame
-            toViewController.imageView.frame = toViewController.view.bounds
+            toViewController.imageView.frame = fromViewController.view.bounds
             }) { (finished) -> Void in
                 // When finished, hide our fromViewController
                 fromViewController.view.alpha = 0.0

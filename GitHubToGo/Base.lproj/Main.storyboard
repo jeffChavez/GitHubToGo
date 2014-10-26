@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xLV-SY-01u">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -96,6 +97,9 @@
                                                 <constraint firstItem="2gz-C4-krc" firstAttribute="top" secondItem="2zW-d9-wLa" secondAttribute="topMargin" constant="3" id="w4l-F4-t6t"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="evZ-JW-evI" kind="showDetail" identifier="SHOW_MY_PROFILE" id="3FU-aO-fHY"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -149,6 +153,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="9b3-Ex-8n6"/>
                                                         <constraint firstAttribute="width" constant="40" id="akw-88-Tqc"/>
+                                                        <constraint firstAttribute="width" secondItem="hT8-3s-QVL" secondAttribute="height" multiplier="1:1" id="hRJ-hL-btf"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -162,6 +167,7 @@
                                         <connections>
                                             <outlet property="repoImageView" destination="hT8-3s-QVL" id="Srq-pG-wyR"/>
                                             <outlet property="repoNameLabel" destination="g5U-By-RyW" id="91n-MN-4SF"/>
+                                            <segue destination="IbQ-cK-Tr3" kind="showDetail" identifier="SHOW_SELECTED_REPO" id="PxN-hL-fhI"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -197,10 +203,118 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pHq-q3-IxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3290" y="329"/>
+        </scene>
+        <!--My Profile View Controller-->
+        <scene sceneID="mdv-Pg-S5b">
+            <objects>
+                <viewController id="evZ-JW-evI" customClass="MyProfileViewController" customModule="GitHubToGo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eLp-fd-P1w"/>
+                        <viewControllerLayoutGuide type="bottom" id="Iv5-eR-ffM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cju-og-zyG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OLv-3U-eeF">
+                                <rect key="frame" x="43" y="42" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="ETg-oS-wsk"/>
+                                    <constraint firstAttribute="height" constant="100" id="mN9-Rv-QJb"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHZ-JR-dMa">
+                                <rect key="frame" x="54" y="150" width="79" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Public Count" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDg-Db-05v">
+                                <rect key="frame" x="194" y="57" width="100" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Private Count" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kf3-wu-ls5">
+                                <rect key="frame" x="194" y="106" width="105" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="publicrepoicon.png" translatesAutoresizingMaskIntoConstraints="NO" id="TXo-LO-NW4">
+                                <rect key="frame" x="151" y="50" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="c3z-Ou-Z9x"/>
+                                    <constraint firstAttribute="height" constant="35" id="c6v-Fb-YbI"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="privaterepos.png" translatesAutoresizingMaskIntoConstraints="NO" id="6l4-QI-d4G">
+                                <rect key="frame" x="151" y="99" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="BlD-CL-S1K"/>
+                                    <constraint firstAttribute="width" constant="35" id="zsS-75-xd1"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNS-iu-UqQ">
+                                <rect key="frame" x="43" y="205" width="26" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hP-Da-s7t">
+                                <rect key="frame" x="413" y="58" width="20" height="20"/>
+                                <color key="backgroundColor" red="0.1294642857142857" green="0.1294642857142857" blue="0.1294642857142857" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="XIT-tV-CAF"/>
+                                    <constraint firstAttribute="height" constant="20" id="rhc-l4-sKv"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hireable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Lv-Uh-ipL">
+                                <rect key="frame" x="341" y="57" width="64" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OLv-3U-eeF" firstAttribute="top" secondItem="TXo-LO-NW4" secondAttribute="top" constant="-8" id="CJm-Fw-coW"/>
+                            <constraint firstItem="VNS-iu-UqQ" firstAttribute="top" secondItem="eLp-fd-P1w" secondAttribute="bottom" constant="205" id="J4k-3k-FQ2"/>
+                            <constraint firstItem="0Lv-Uh-ipL" firstAttribute="leading" secondItem="JDg-Db-05v" secondAttribute="trailing" constant="47" id="O0E-vP-ZDI"/>
+                            <constraint firstItem="OLv-3U-eeF" firstAttribute="top" secondItem="eLp-fd-P1w" secondAttribute="bottom" constant="42" id="RYz-wU-UOo"/>
+                            <constraint firstItem="OLv-3U-eeF" firstAttribute="leading" secondItem="Cju-og-zyG" secondAttribute="leadingMargin" constant="27" id="Rn1-mn-VuM"/>
+                            <constraint firstItem="VNS-iu-UqQ" firstAttribute="leading" secondItem="Cju-og-zyG" secondAttribute="leadingMargin" constant="27" id="X8E-58-zEs"/>
+                            <constraint firstItem="7hP-Da-s7t" firstAttribute="leading" secondItem="0Lv-Uh-ipL" secondAttribute="trailing" constant="8" id="XZj-B3-6NN"/>
+                            <constraint firstItem="0Lv-Uh-ipL" firstAttribute="centerY" secondItem="JDg-Db-05v" secondAttribute="centerY" id="aym-Gq-nak"/>
+                            <constraint firstItem="OLv-3U-eeF" firstAttribute="bottom" secondItem="6l4-QI-d4G" secondAttribute="bottom" constant="8" id="f7d-0S-7hy"/>
+                            <constraint firstItem="rHZ-JR-dMa" firstAttribute="centerX" secondItem="OLv-3U-eeF" secondAttribute="centerX" id="jub-Fk-D7c"/>
+                            <constraint firstItem="kf3-wu-ls5" firstAttribute="leading" secondItem="6l4-QI-d4G" secondAttribute="trailing" constant="8" id="lgh-YM-iDM"/>
+                            <constraint firstItem="0Lv-Uh-ipL" firstAttribute="centerY" secondItem="7hP-Da-s7t" secondAttribute="centerY" id="nFo-Te-1gn"/>
+                            <constraint firstItem="6l4-QI-d4G" firstAttribute="leading" secondItem="OLv-3U-eeF" secondAttribute="trailing" constant="8" id="nnJ-Zf-MKy"/>
+                            <constraint firstItem="JDg-Db-05v" firstAttribute="centerY" secondItem="TXo-LO-NW4" secondAttribute="centerY" id="okM-cn-J97"/>
+                            <constraint firstItem="JDg-Db-05v" firstAttribute="leading" secondItem="TXo-LO-NW4" secondAttribute="trailing" constant="8" id="sRh-RP-zIo"/>
+                            <constraint firstItem="rHZ-JR-dMa" firstAttribute="top" secondItem="OLv-3U-eeF" secondAttribute="bottom" constant="8" id="t95-PL-Urs"/>
+                            <constraint firstItem="kf3-wu-ls5" firstAttribute="centerY" secondItem="6l4-QI-d4G" secondAttribute="centerY" id="vd3-Ef-EXE"/>
+                            <constraint firstItem="TXo-LO-NW4" firstAttribute="leading" secondItem="OLv-3U-eeF" secondAttribute="trailing" constant="8" id="wRq-WX-SXQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bioLabel" destination="VNS-iu-UqQ" id="aPY-oN-dmm"/>
+                        <outlet property="hireableBox" destination="7hP-Da-s7t" id="8BK-7m-Pe7"/>
+                        <outlet property="imageView" destination="OLv-3U-eeF" id="wnz-PU-XiH"/>
+                        <outlet property="privateRepoCountLabel" destination="kf3-wu-ls5" id="CeA-DN-fSR"/>
+                        <outlet property="publicRepoCountLabel" destination="JDg-Db-05v" id="YTL-ob-dZT"/>
+                        <outlet property="usernameLabel" destination="rHZ-JR-dMa" id="ym5-Sa-kfH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d5I-Vj-SbY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1834" y="1132"/>
         </scene>
         <!--User Search View Controller-->
         <scene sceneID="1d0-uX-biT">
@@ -388,4 +502,8 @@
             <point key="canvasLocation" x="248" y="649"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="privaterepos.png" width="35" height="35"/>
+        <image name="publicrepoicon.png" width="35" height="35"/>
+    </resources>
 </document>

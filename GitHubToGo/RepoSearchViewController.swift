@@ -47,24 +47,28 @@ class RepoSearchViewController: UIViewController, UITableViewDataSource, UITable
         } else {
             self.networkController.downloadAvatarsFromRepoSearch(self.repos[indexPath.row], completionHandler: { (image) -> (Void) in
                 if let cellForImage = self.tableView.cellForRowAtIndexPath(indexPath) as? RepoSearchCell {
-                    if cell.tag == currentTag {
-                        cellForImage.repoImageView.image = image
-                        cell.repoImageView.layer.cornerRadius = 3
-                        cell.repoImageView.layer.masksToBounds = true
-                        cell.repoImageView.layer.borderWidth = 0.5
-                    }
+                        UIView.transitionWithView(cellForImage.repoImageView, duration: 0.4, options: UIViewAnimationOptions.TransitionCrossDissolve , animations: { () -> Void in
+                            if cell.tag == currentTag {
+                                cellForImage.repoImageView.image = image
+                                cell.repoImageView.layer.cornerRadius = 3
+                                cell.repoImageView.layer.masksToBounds = true
+                                cell.repoImageView.layer.borderWidth = 0.5
+                            }
+                        }, completion: nil)
                 }
             })
         }
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("REPO_DETAIL_VC") as RepoDetailViewController
-        newVC.selectedRepo = self.repos[indexPath.row]
-        self.navigationController?.pushViewController(newVC, animated: true)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        let indexPath = self.tableView.indexPathForSelectedRow()
+        if segue.identifier == "SHOW_SELECTED_REPO" {
+            let destination = segue.destinationViewController as RepoDetailViewController
+            destination.selectedRepo = self.repos[indexPath!.row]
+        }
     }
+
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         networkController.searchForRepos(self.searchBar.text, completionHandler: { (errorDescription, repos) -> (Void) in
@@ -77,6 +81,10 @@ class RepoSearchViewController: UIViewController, UITableViewDataSource, UITable
                 //alert the user something went wrong
             }
         })
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 44
     }
     
     func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B31548E19FB01B100ED68C4 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B31548D19FB01B100ED68C4 /* MyProfileViewController.swift */; };
+		6B3E3ABB19FCF38400E49552 /* GitHub-Mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B3E3ABA19FCF38400E49552 /* GitHub-Mark.png */; };
 		6B7A582619F83F610090BF65 /* UserSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7A582519F83F610090BF65 /* UserSearchViewController.swift */; };
 		6B7A582819F841B80090BF65 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7A582719F841B80090BF65 /* UserSearchCell.swift */; };
 		6B7D863819F85D89006D5579 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D863719F85D89006D5579 /* User.swift */; };
@@ -28,6 +30,9 @@
 		6B89E7DD19F5BFA500525411 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B89E7DC19F5BFA500525411 /* RootViewController.swift */; };
 		6B89E7DF19F5C9B900525411 /* RepoSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B89E7DE19F5C9B900525411 /* RepoSearchViewController.swift */; };
 		6B89E7E619F5F4B500525411 /* dummy.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B89E7E519F5F4B500525411 /* dummy.json */; };
+		6B9C630219FCEA7D00E4E332 /* forksicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B9C630019FCEA7D00E4E332 /* forksicon.png */; };
+		6B9C630319FCEA7D00E4E332 /* publicrepoicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B9C630119FCEA7D00E4E332 /* publicrepoicon.png */; };
+		6B9C630519FCEB2900E4E332 /* privaterepos.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B9C630419FCEB2900E4E332 /* privaterepos.png */; };
 		6BC58BC119F9802900627B35 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC58BC019F9802900627B35 /* StringExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B31548D19FB01B100ED68C4 /* MyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		6B3E3ABA19FCF38400E49552 /* GitHub-Mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GitHub-Mark.png"; sourceTree = "<group>"; };
 		6B7A582519F83F610090BF65 /* UserSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchViewController.swift; sourceTree = "<group>"; };
 		6B7A582719F841B80090BF65 /* UserSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		6B7D863719F85D89006D5579 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -67,6 +74,9 @@
 		6B89E7DC19F5BFA500525411 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		6B89E7DE19F5C9B900525411 /* RepoSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoSearchViewController.swift; sourceTree = "<group>"; };
 		6B89E7E519F5F4B500525411 /* dummy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dummy.json; sourceTree = "<group>"; };
+		6B9C630019FCEA7D00E4E332 /* forksicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forksicon.png; sourceTree = "<group>"; };
+		6B9C630119FCEA7D00E4E332 /* publicrepoicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = publicrepoicon.png; sourceTree = "<group>"; };
+		6B9C630419FCEB2900E4E332 /* privaterepos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = privaterepos.png; sourceTree = "<group>"; };
 		6BC58BC019F9802900627B35 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +131,7 @@
 				6B7D864319F96900006D5579 /* RepoDetailViewController.swift */,
 				6B7A582519F83F610090BF65 /* UserSearchViewController.swift */,
 				6B7D863919F86DF9006D5579 /* UserDetailViewController.swift */,
+				6B31548D19FB01B100ED68C4 /* MyProfileViewController.swift */,
 				6B89E7D819F5A99300525411 /* NetworkController.swift */,
 				6B89E7BA19F59CE400525411 /* Main.storyboard */,
 				6B89E7BD19F59CE400525411 /* Images.xcassets */,
@@ -136,6 +147,10 @@
 			children = (
 				6B89E7E519F5F4B500525411 /* dummy.json */,
 				6B89E7B219F59CE400525411 /* Info.plist */,
+				6B9C630019FCEA7D00E4E332 /* forksicon.png */,
+				6B9C630419FCEB2900E4E332 /* privaterepos.png */,
+				6B9C630119FCEA7D00E4E332 /* publicrepoicon.png */,
+				6B3E3ABA19FCF38400E49552 /* GitHub-Mark.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -265,9 +280,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B89E7BC19F59CE400525411 /* Main.storyboard in Resources */,
+				6B9C630519FCEB2900E4E332 /* privaterepos.png in Resources */,
 				6B89E7C119F59CE400525411 /* LaunchScreen.xib in Resources */,
 				6B89E7BE19F59CE400525411 /* Images.xcassets in Resources */,
 				6B89E7E619F5F4B500525411 /* dummy.json in Resources */,
+				6B3E3ABB19FCF38400E49552 /* GitHub-Mark.png in Resources */,
+				6B9C630219FCEA7D00E4E332 /* forksicon.png in Resources */,
+				6B9C630319FCEA7D00E4E332 /* publicrepoicon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +316,7 @@
 				6B89E7DB19F5AF8A00525411 /* Repo.swift in Sources */,
 				6B7D863E19F87847006D5579 /* HideImageAnimator.swift in Sources */,
 				6B7D863C19F87813006D5579 /* ShowImageAnimator.swift in Sources */,
+				6B31548E19FB01B100ED68C4 /* MyProfileViewController.swift in Sources */,
 				6B89E7B719F59CE400525411 /* GitHubToGo.xcdatamodeld in Sources */,
 				6B7A582619F83F610090BF65 /* UserSearchViewController.swift in Sources */,
 				6B89E7D719F59E7500525411 /* SplitViewController.swift in Sources */,

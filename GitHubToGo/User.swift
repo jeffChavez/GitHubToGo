@@ -19,3 +19,23 @@ class User {
         self.username = item["login"] as String
     }
 }
+
+class AuthenticatedUser : User {
+    
+    var bio : String?
+    var hireable : Bool
+    var publicRepos : Int
+    var privateRepos : Int
+    
+    init (jsonDictionary: NSDictionary) {
+        self.bio = jsonDictionary["bio"] as? String
+        if self.bio == nil {
+            self.bio = "Bio Unavailable"
+        }
+        self.hireable = jsonDictionary["hireable"] as Bool
+        self.publicRepos = jsonDictionary["public_repos"] as Int
+        let plan = jsonDictionary["plan"] as NSDictionary
+        self.privateRepos = plan["private_repos"] as Int
+        super.init(item: jsonDictionary)
+    }
+}
