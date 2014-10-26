@@ -27,40 +27,41 @@ class MyProfileViewController: UIViewController {
         self.networkController = appDelegate.networkController
         
         self.imageView.image = UIImage(named: "GitHub-Mark")
+            }
+    
+    override func viewDidAppear(animated: Bool) {
         self.networkController.fetchAuthenticatedUser { (errorDescription, authenticatedUser) -> Void in
             if errorDescription == nil {
                 self.authenticatedUser = authenticatedUser!
+                self.usernameLabel.text = self.authenticatedUser?.username
+                self.publicRepoCountLabel.text = self.authenticatedUser?.publicRepos.description
+                self.bioLabel.text = self.authenticatedUser?.bio
+                self.privateRepoCountLabel.text = self.authenticatedUser?.privateRepos.description
+                if self.authenticatedUser?.hireable == true {
+                    self.hireableBox.backgroundColor = UIColor.greenColor()
+                } else {
+                    self.hireableBox.backgroundColor = UIColor.redColor()
+                }
+                if self.authenticatedUser?.avatarImage != nil {
+                    self.imageView.image = self.authenticatedUser?.avatarImage
+                } else {
+                    self.networkController.downloadAvatarsFromUserSearch(self.authenticatedUser!, completionHandler: { (image) -> (Void) in
+                        UIView.transitionWithView(self.imageView, duration: 0.4, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
+                            self.imageView.image = image
+                            self.imageView.layer.cornerRadius = 3
+                            self.imageView.layer.masksToBounds = true
+                            self.imageView.layer.borderWidth = 0.5
+                            }, completion: nil)
+                    })
+                }
+
                 println("authentication completed")
             } else {
                 println("authentication error")
             }
         }
-    }
-    
-    override func viewDidAppear(animated: Bool) {
 
-        self.usernameLabel.text = self.authenticatedUser?.username
-        self.publicRepoCountLabel.text = self.authenticatedUser?.publicRepos.description
-        self.bioLabel.text = self.authenticatedUser?.bio
-        self.privateRepoCountLabel.text = self.authenticatedUser?.privateRepos.description
-        if self.authenticatedUser?.hireable == true {
-            self.hireableBox.backgroundColor = UIColor.greenColor()
-        } else {
-            self.hireableBox.backgroundColor = UIColor.redColor()
-        }
-        if self.authenticatedUser?.avatarImage != nil {
-            self.imageView.image = self.authenticatedUser?.avatarImage
-        } else {
-            self.networkController.downloadAvatarsFromUserSearch(self.authenticatedUser!, completionHandler: { (image) -> (Void) in
-                UIView.transitionWithView(self.imageView, duration: 0.4, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
-                    self.imageView.image = image
-                    self.imageView.layer.cornerRadius = 3
-                    self.imageView.layer.masksToBounds = true
-                    self.imageView.layer.borderWidth = 0.5
-                    }, completion: nil)
-            })
-        }
-    }
+            }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
