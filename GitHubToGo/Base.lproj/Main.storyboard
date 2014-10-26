@@ -234,14 +234,14 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Public Count" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDg-Db-05v">
-                                <rect key="frame" x="194" y="57" width="100" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDg-Db-05v">
+                                <rect key="frame" x="194" y="57" width="10" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Private Count" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kf3-wu-ls5">
-                                <rect key="frame" x="194" y="106" width="105" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kf3-wu-ls5">
+                                <rect key="frame" x="194" y="106" width="10" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -267,7 +267,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hP-Da-s7t">
-                                <rect key="frame" x="413" y="58" width="20" height="20"/>
+                                <rect key="frame" x="323" y="58" width="20" height="20"/>
                                 <color key="backgroundColor" red="0.1294642857142857" green="0.1294642857142857" blue="0.1294642857142857" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="XIT-tV-CAF"/>
@@ -275,7 +275,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hireable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Lv-Uh-ipL">
-                                <rect key="frame" x="341" y="57" width="64" height="21"/>
+                                <rect key="frame" x="251" y="57" width="64" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -285,7 +285,6 @@
                         <constraints>
                             <constraint firstItem="OLv-3U-eeF" firstAttribute="top" secondItem="TXo-LO-NW4" secondAttribute="top" constant="-8" id="CJm-Fw-coW"/>
                             <constraint firstItem="VNS-iu-UqQ" firstAttribute="top" secondItem="eLp-fd-P1w" secondAttribute="bottom" constant="205" id="J4k-3k-FQ2"/>
-                            <constraint firstItem="0Lv-Uh-ipL" firstAttribute="leading" secondItem="JDg-Db-05v" secondAttribute="trailing" constant="47" id="O0E-vP-ZDI"/>
                             <constraint firstItem="OLv-3U-eeF" firstAttribute="top" secondItem="eLp-fd-P1w" secondAttribute="bottom" constant="42" id="RYz-wU-UOo"/>
                             <constraint firstItem="OLv-3U-eeF" firstAttribute="leading" secondItem="Cju-og-zyG" secondAttribute="leadingMargin" constant="27" id="Rn1-mn-VuM"/>
                             <constraint firstItem="VNS-iu-UqQ" firstAttribute="leading" secondItem="Cju-og-zyG" secondAttribute="leadingMargin" constant="27" id="X8E-58-zEs"/>
@@ -299,6 +298,7 @@
                             <constraint firstItem="JDg-Db-05v" firstAttribute="centerY" secondItem="TXo-LO-NW4" secondAttribute="centerY" id="okM-cn-J97"/>
                             <constraint firstItem="JDg-Db-05v" firstAttribute="leading" secondItem="TXo-LO-NW4" secondAttribute="trailing" constant="8" id="sRh-RP-zIo"/>
                             <constraint firstItem="rHZ-JR-dMa" firstAttribute="top" secondItem="OLv-3U-eeF" secondAttribute="bottom" constant="8" id="t95-PL-Urs"/>
+                            <constraint firstItem="0Lv-Uh-ipL" firstAttribute="leading" secondItem="TXo-LO-NW4" secondAttribute="trailing" constant="65" id="tlW-qj-zmv"/>
                             <constraint firstItem="kf3-wu-ls5" firstAttribute="centerY" secondItem="6l4-QI-d4G" secondAttribute="centerY" id="vd3-Ef-EXE"/>
                             <constraint firstItem="TXo-LO-NW4" firstAttribute="leading" secondItem="OLv-3U-eeF" secondAttribute="trailing" constant="8" id="wRq-WX-SXQ"/>
                         </constraints>

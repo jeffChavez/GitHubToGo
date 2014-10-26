@@ -10,11 +10,11 @@ import UIKit
 
 class RootViewController: UITableViewController, UINavigationControllerDelegate {
     
-    @IBOutlet var searchBar : UISearchBar!
     
     var window : UIWindow?
     var networkController : NetworkController!
     var authenticatedUser : AuthenticatedUser?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,19 +23,7 @@ class RootViewController: UITableViewController, UINavigationControllerDelegate 
 
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         self.networkController = appDelegate.networkController
-        
-        //make the network call for MyProfileVC's data is initialized before segue
-        self.networkController.fetchAuthenticatedUser { (errorDescription, authenticatedUser) -> Void in
-            if errorDescription == nil {
-                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                    self.authenticatedUser = authenticatedUser!
-                    println("authentication completed")
-                })
-            } else {
-                //alert the user something went wrong
-            }
         }
-    }
     
     override func viewDidAppear(animated: Bool) {
         if let value = NSUserDefaults.standardUserDefaults().valueForKey("OAuthToken") as? String {

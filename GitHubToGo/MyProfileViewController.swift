@@ -27,7 +27,27 @@ class MyProfileViewController: UIViewController {
         self.networkController = appDelegate.networkController
         
         self.imageView.image = UIImage(named: "GitHub-Mark")
-        
+        self.networkController.fetchAuthenticatedUser { (errorDescription, authenticatedUser) -> Void in
+            if errorDescription == nil {
+                self.authenticatedUser = authenticatedUser!
+                println("authentication completed")
+            } else {
+                println("authentication error")
+            }
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+
+        self.usernameLabel.text = self.authenticatedUser?.username
+        self.publicRepoCountLabel.text = self.authenticatedUser?.publicRepos.description
+        self.bioLabel.text = self.authenticatedUser?.bio
+        self.privateRepoCountLabel.text = self.authenticatedUser?.privateRepos.description
+        if self.authenticatedUser?.hireable == true {
+            self.hireableBox.backgroundColor = UIColor.greenColor()
+        } else {
+            self.hireableBox.backgroundColor = UIColor.redColor()
+        }
         if self.authenticatedUser?.avatarImage != nil {
             self.imageView.image = self.authenticatedUser?.avatarImage
         } else {
@@ -37,20 +57,8 @@ class MyProfileViewController: UIViewController {
                     self.imageView.layer.cornerRadius = 3
                     self.imageView.layer.masksToBounds = true
                     self.imageView.layer.borderWidth = 0.5
-                }, completion: nil)
+                    }, completion: nil)
             })
-        }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        self.usernameLabel.text = self.authenticatedUser?.username
-        self.publicRepoCountLabel.text = self.authenticatedUser?.publicRepos.description
-        self.bioLabel.text = self.authenticatedUser?.bio
-        self.privateRepoCountLabel.text = self.authenticatedUser?.privateRepos.description
-        if self.authenticatedUser?.hireable == true {
-            self.hireableBox.backgroundColor = UIColor.greenColor()
-        } else {
-            self.hireableBox.backgroundColor = UIColor.redColor()
         }
     }
     
