@@ -169,7 +169,6 @@ class NetworkController {
             }
         })
         dataTask.resume()
-        
     }
     
     func downloadAvatarsFromUserSearch (user: User, completionHandler: (image: UIImage) -> (Void)) {

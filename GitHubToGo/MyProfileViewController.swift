@@ -54,14 +54,12 @@ class MyProfileViewController: UIViewController {
                             }, completion: nil)
                     })
                 }
-
                 println("authentication completed")
             } else {
                 println("authentication error")
             }
         }
-
-            }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

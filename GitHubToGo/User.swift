@@ -23,7 +23,7 @@ class User {
 class AuthenticatedUser : User {
     
     var bio : String?
-    var hireable : Bool
+    var hireable : Bool?
     var publicRepos : Int
     var privateRepos : Int
     
@@ -32,7 +32,10 @@ class AuthenticatedUser : User {
         if self.bio == nil {
             self.bio = "Bio Unavailable"
         }
-        self.hireable = jsonDictionary["hireable"] as Bool
+        self.hireable = jsonDictionary["hireable"] as? Bool
+        if self.hireable == nil {
+            self.hireable = false
+        }
         self.publicRepos = jsonDictionary["public_repos"] as Int
         let plan = jsonDictionary["plan"] as NSDictionary
         self.privateRepos = plan["private_repos"] as Int
