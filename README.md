@@ -2,6 +2,7 @@ GitHubToGo
 ==========
 Week 3 Assignment
 
+![Imgur](http://i.imgur.com/gG3LKc2.png)
 
 ###Assignment
 Monday
