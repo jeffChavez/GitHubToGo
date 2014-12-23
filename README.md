@@ -3,6 +3,7 @@ GitHubToGo
 Week 3 Assignment
 
 ![Imgur](http://i.imgur.com/gG3LKc2.png)
+![Imgur](http://i.imgur.com/qFNs4Ih.png)
 
 ###Assignment
 Monday
