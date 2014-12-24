@@ -5,6 +5,8 @@ Week 3 Assignment
 ![Imgur](http://i.imgur.com/gG3LKc2.png)
 ![Imgur](http://i.imgur.com/qFNs4Ih.png)
 
+![Imgur](http://i.imgur.com/qbW36Ms.gif)
+
 ###Assignment
 Monday
 - Implement a split view controller in your app to control your interface
