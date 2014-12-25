@@ -36,8 +36,6 @@ class RootViewController: UITableViewController, UINavigationControllerDelegate 
                     self.networkController.requestOAuthAccess()
                 })
             }))
-            alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-            self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
 
