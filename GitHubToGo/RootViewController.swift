@@ -15,7 +15,7 @@ class RootViewController: UITableViewController, UINavigationControllerDelegate 
     var networkController : NetworkController!
     var authenticatedUser : AuthenticatedUser?
     
-    
+    // a comment
     override func viewDidLoad() {
         super.viewDidLoad()
         
