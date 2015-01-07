@@ -2,10 +2,11 @@ GitHubToGo
 ==========
 Week 3 Assignment
 
-![Imgur](http://i.imgur.com/gG3LKc2.png)
-![Imgur](http://i.imgur.com/qFNs4Ih.png)
-
-![Imgur](http://i.imgur.com/qbW36Ms.gif)
+![GitHub](https://github.com/jeffChavez/GitHubToGo/blob/master/githubtogo1.png)
+![GitHub](https://github.com/jeffChavez/GitHubToGo/blob/master/githubtogo2.png)
+![GitHub](https://github.com/jeffChavez/GitHubToGo/blob/master/githubtogo1.gif)
+![GitHub](https://github.com/jeffChavez/GitHubToGo/blob/master/githubtogo2.gif)
+![GitHub](https://github.com/jeffChavez/GitHubToGo/blob/master/githubtogo3.gif)
 
 ###Assignment
 Monday
