@@ -4,7 +4,7 @@ Week 3 Assignment
 
 ![GitHub](https://github.com/jeffChavez/GitHubToGo/blob/master/githubtogo1.png)
 ![GitHub](https://github.com/jeffChavez/GitHubToGo/blob/master/githubtogo2.png)
-![GitHub](https://github.com/jeffChavez/GitHubToGo/blob/master/GitGubToGo1.gif)
+![GitHub](https://github.com/jeffChavez/GitHubToGo/blob/master/GitHubToGo1.gif)
 ![GitHub](https://github.com/jeffChavez/GitHubToGo/blob/master/githubtogo2.gif)
 ![GitHub](https://github.com/jeffChavez/GitHubToGo/blob/master/githubtogo3.gif)
 
