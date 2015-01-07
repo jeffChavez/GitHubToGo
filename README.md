@@ -2,11 +2,33 @@ GitHubToGo
 ==========
 Week 3 Assignment
 
+This is a GitHub mobile client. On launch, the user is redirected to GitHub's OAuth page in Safari, where they can sign into their GitGub account. After signing in the user is redirected back into the app, at which point they are now able to make authenticated network calls to GitHub's API.
 ![GitHub](https://github.com/jeffChavez/GitHubToGo/blob/master/githubtogo1.png)
 ![GitHub](https://github.com/jeffChavez/GitHubToGo/blob/master/githubtogo2.png)
+
+The user is able to search repositories where the results are presented to them in a tableView. Selecting a row will take them to a `WKWebView` with the url of their repository. 
 ![GitHub](https://github.com/jeffChavez/GitHubToGo/blob/master/GitHubToGo1.gif)
+
+The user is also able to search for users where the results are presented to them in a collectionView. Selecting an item in the grid will perform an animation displaying the user's profile picture and username in a new view controller.
 ![GitHub](https://github.com/jeffChavez/GitHubToGo/blob/master/githubtogo2.gif)
+
+Finally, the user can view the details of their own profile, such as their profile image, username, number of public and private repositories, and if they are hireable.
 ![GitHub](https://github.com/jeffChavez/GitHubToGo/blob/master/githubtogo3.gif)
+
+###Features
+- Making authenticated network calls with OAuth workflow
+- Parsing the OAuth token and attaching to `NSURLSessionConfiguration.HTTPAdditionalHeaders` property
+- Persisting the token with `NSUserDefaults`
+- Split view controller
+- `UICollectionView` with custom cells
+- Custom transitions with `UIView.animateWithDuration`
+- JSON Parsing
+- Regex for search bar character validation
+- Asynchronous image downloading
+- Subclassing, for using handling Default vs Authenticated Users
+- `NSURLSession` and `NSURLSessionConfiguration` for 
+- `UISearchBar`
+- Singleton design pattern for the `NetworkController`
 
 ###Assignment
 Monday
