@@ -61,15 +61,6 @@ class RepoSearchViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        let indexPath = self.tableView.indexPathForSelectedRow()
-        if segue.identifier == "SHOW_SELECTED_REPO" {
-            let destination = segue.destinationViewController as RepoDetailViewController
-            destination.selectedRepo = self.repos[indexPath!.row]
-        }
-    }
-
-    
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         networkController.searchForRepos(self.searchBar.text, completionHandler: { (errorDescription, repos) -> (Void) in
             if errorDescription == nil {
@@ -89,5 +80,11 @@ class RepoSearchViewController: UIViewController, UITableViewDataSource, UITable
     
     func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         return text.validate()
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let newVC = storyboard?.instantiateViewControllerWithIdentifier("REPO_DETAIL_VC") as RepoDetailViewController
+        newVC.selectedRepo = self.repos[indexPath.row]
+        self.navigationController?.pushViewController(newVC, animated: true)
     }
 }
